@@ -18,6 +18,7 @@
             $req = $bdd->prepare("SELECT id, login, password FROM members WHERE login=?");
             $req->execute([$login]);
             $don = $req->fetch(PDO::FETCH_ASSOC);
+            $req->closeCursor();
             if($don)
             {
                 // test du mot de passe
@@ -25,7 +26,8 @@
                 {
                     $_SESSION['id']=$don['id'];
                     $_SESSION['login']=$don['login'];
-                    $_SESSION['email']=$don['email'];
+                    header("LOCATION:dashboard.php");
+                    exit();
                 }else{
                     $error = "Votre login ou votre mot de passe n'est pas correct";
                 }
@@ -55,7 +57,13 @@
             <div class="col-md-4">
                 <h1>Connexion</h1>
                 <form action="index.php" method="POST">
-                    <div class="alert alert-danger">test</div>
+                    <?php
+                        if(isset($error))
+                        {
+                            echo '<div class="alert alert-danger">'.$error.'</div>';
+                        }
+                    ?>
+                   
                     <div class="form-group my-2">
                         <label for="login">Login</label>
                         <input type="text" name="login" id="login" class="form-control">
