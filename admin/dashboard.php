@@ -11,6 +11,11 @@
     // gestion déconnexion
     if(isset($_GET['deco']))
     {
+        if(isset($_COOKIE['remember_me']))
+        {
+            setcookie('remember_me');
+            setcookie('myid');
+        }
         session_destroy();
         header("LOCATION:index.php");
         exit();

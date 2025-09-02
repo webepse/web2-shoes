@@ -10,6 +10,13 @@
 
     var_dump($_COOKIE);
 
+    // vérifier si SESSION
+    if(isset($_SESSION['id']))
+    {
+        header("LOCATION:dashboard.php");
+        exit();
+    }
+
     // vérifier s'il y a un cookie
     if(isset($_COOKIE['remember_me']) && isset($_COOKIE['myid']))
     {
@@ -32,7 +39,7 @@
                     header("LOCATION:dashboard.php");
                     exit();
                 }else{
-                    header("LOCATION:403.php?token");
+                    header("LOCATION:index.php");
                     exit();
                 }
             }else{
