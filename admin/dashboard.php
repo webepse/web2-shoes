@@ -6,6 +6,16 @@
         exit();
     }
 
+    var_dump($_COOKIE);
+
+    // gestion déconnexion
+    if(isset($_GET['deco']))
+    {
+        session_destroy();
+        header("LOCATION:index.php");
+        exit();
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +31,10 @@
     <?php
         include("partials/header.php");
     ?>
-    <h1>Dashboard</h1>
+    <div class="container-fluid">
+        <h1>Dashboard</h1>
 
-
+    </div>
     <?php
         include("partials/footer.php");
     ?>
