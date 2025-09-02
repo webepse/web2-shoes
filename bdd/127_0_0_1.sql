@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 02 sep. 2025 à 06:43
+-- Généré le : mar. 02 sep. 2025 à 10:02
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `members` (
   `id` int NOT NULL AUTO_INCREMENT,
   `login` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `connexion` int DEFAULT NULL,
+  `connexion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44,7 +44,25 @@ CREATE TABLE IF NOT EXISTS `members` (
 --
 
 INSERT INTO `members` (`id`, `login`, `password`, `connexion`, `email`) VALUES
-(1, 'admin', '$argon2i$v=19$m=65536,t=4,p=1$RFFmbEd5NkJIbS9kVTlKMg$wEQ6S56zPhXw8HKPOAFTWQM8XEzlbFWQB787olp5Aas', NULL, 'admin@epse.be');
+(1, 'admin', '$argon2i$v=19$m=65536,t=4,p=1$RFFmbEd5NkJIbS9kVTlKMg$wEQ6S56zPhXw8HKPOAFTWQM8XEzlbFWQB787olp5Aas', '$2y$10$m8CmInxhqkY/j/4yfE.81uDY4O7xeiafSafnJ1n.oUQLVO584CHrS', 'admin@epse.be');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `marque` int NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `cover` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `marque` (`marque`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
