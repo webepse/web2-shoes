@@ -82,6 +82,13 @@
                      $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
                      $fichiercplt = rand().$fichier;
                      
+                     if(move_uploaded_file($_FILES['image']['tmp_name'], $dossier.$fichiercplt))
+                     {
+
+                     }else{
+                        header("LOCATION:addProduct.php?errorimg=7");
+                        exit();
+                     }
      
 
                 }else{
