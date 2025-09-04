@@ -10,7 +10,26 @@
 
     if(isset($_GET['delete']) && is_numeric($_GET['delete']))
     {
-        $id = htmlspecialchars($_GET['delete']); 
+        $id = htmlspecialchars($_GET['delete']);
+        $verif = $bdd->prepare("SELECT * FROM products WHERE id=?");
+        $verif->execute([$id]);
+        $donV = $verif->fetch(PDO::FETCH_ASSOC);
+        $verif->closeCursor();
+        if(!$donV)
+        {
+            header("LOCATION:products.php");
+            exit();
+        }
+
+        // supprimer les images
+        unlink('../images/'.$donV['cover']);
+        unlink('../images/mini_'.$donV['cover']);
+
+        $delete = $bdd->prepare("DELETE FROM products WHERE id=?");
+        $delete->execute([$id]);
+        header("LOCATION:products.php?successDel=".$id);
+        
+
     }
 
 
