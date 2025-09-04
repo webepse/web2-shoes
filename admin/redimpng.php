@@ -1,15 +1,25 @@
 <?php
 session_start();
+if(!isset($_SESSION['id']))
+{
+    header("LOCATION:index.php");
+    exit();
+}
 
+if(!isset($_GET['image']))
+{
+    header("LOCATION:index.php");
+    exit();
+}
 	
-$source = imagecreatefrompng("../image/".$_GET['image']); // La photo est la source
+$source = imagecreatefrompng("../images/".$_GET['image']); // La photo est la source
 
 
 
 
 // getimagesize retourne un array contenant la largeur [0] et la hauteur [1]
 
-$TailleImageChoisie = getimagesize("../image/".$_GET['image']);
+$TailleImageChoisie = getimagesize("../images/".$_GET['image']);
 
 // je définis la largeur de mon image.
 $NouvelleLargeur = 300;
@@ -48,8 +58,8 @@ imagepng($destination,$rep_nom);
 
 // redirection
 
-
-header("LOCATION:jeux.php?ajout=ok");
+header("LOCATION:products.php?add=success");
+exit();
 
 
 

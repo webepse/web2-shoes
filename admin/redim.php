@@ -1,27 +1,32 @@
 <?php
-session_start();
+session_start();    
+if(!isset($_SESSION['id']))
+{
+    header("LOCATION:index.php");
+    exit();
+}
 
+if(!isset($_GET['image']))
+{
+    header("LOCATION:index.php");
+    exit();
+}
 	
-$source = imagecreatefromjpeg("../image/".$_GET['image']); // La photo est la source
-
-
-
+$source = imagecreatefromjpeg("../images/".$_GET['image']); // La photo est la source
 
 // getimagesize retourne un array contenant la largeur [0] et la hauteur [1]
 
-$TailleImageChoisie = getimagesize("../image/".$_GET['image']);
+$TailleImageChoisie = getimagesize("../images/".$_GET['image']);
 
 // je définis la largeur de l'image.
 
 $NouvelleLargeur = 300;
 
- 
 
 //  je calcule le pourcentage de réduction qui correspond au quotient de l'ancienne largeur par la nouvelle.
 
 $Reduction = ( ($NouvelleLargeur * 100)/$TailleImageChoisie[0] );
 
- 
 
 //  je détermine la hauteur de la nouvelle image en appliquant le pourcentage de réduction à l'ancienne hauteur.
 
@@ -39,12 +44,13 @@ imagecopyresampled($destination, $source, 0, 0, 0, 0, $NouvelleLargeur, $Nouvell
 
 // On enregistre la miniature sous le nom "mini_"
 
-$rep_nom="../image/mini_".$_GET['image'];
+$rep_nom="../images/mini_".$_GET['image'];
 
 imagejpeg($destination,$rep_nom,80);
 
 // redirection
 
-header("LOCATION:index.php?ajout=ok");
+header("LOCATION:products.php?add=success");
+exit();
 
 ?>

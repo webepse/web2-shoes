@@ -84,6 +84,25 @@
                      
                      if(move_uploaded_file($_FILES['image']['tmp_name'], $dossier.$fichiercplt))
                      {
+                        // insertion dans la bdd
+                        $insert = $bdd->prepare("INSERT INTO products(nom,marque,description,cover,price) VALUES(:nom,:marque,:descri,:cover,:prix)");
+                        $insert->execute([
+                            ":nom" => $nom,
+                            ":marque" => $marque,
+                            ":descri"=> $description,
+                            ":cover" => $fichiercplt,
+                            ":prix" => $prix
+                        ]);
+                        // gestion des redim
+                        if($extension == ".jpg" || $extension == ".jpeg")
+                        {
+                            header("LOCATION:redim.php?image=".$fichiercplt);
+                            exit();
+                        }else{
+                            // dans le cas d'un fichier .png
+                            header("LOCATION:redimpng.php?image=".$fichiercplt);
+                            exit();
+                        }
 
                      }else{
                         header("LOCATION:addProduct.php?errorimg=7");
