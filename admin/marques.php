@@ -22,6 +22,20 @@
             exit();
         }
 
+        // récup les images pour les supprimer
+        $products = $bdd->prepare("SELECT * FROM products WHERE marque=?");
+        $products->execute([$id]);
+        $donP = $products->fetchAll(PDO::FETCH_ASSOC);
+        foreach($donP as $product)
+        {
+            unlink('../images/'.$product['cover']);
+            unlink('../images/mini_'.$product['cover']);
+        }
+
+        // supprimer dans la bdd les produits
+        $deleteProd = $bdd->prepare("DELETE FROM products WHERE marque=?");
+        $deleteProd->execute([$id]);
+
         // supprimer
         $delete = $bdd->prepare("DELETE FROM marques WHERE id=?");
         $delete->execute([$id]);
