@@ -50,7 +50,14 @@ imagejpeg($destination,$rep_nom,80);
 
 // redirection
 
-header("LOCATION:products.php?add=success");
-exit();
+if(isset($_GET['id']))
+{
+    header("LOCATION:products.php?update=".$_GET['id']);
+    exit();
+}else{
+    header("LOCATION:products.php?add=success");
+    exit();
+}
+
 
 ?>
