@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 02 sep. 2025 à 10:02
+-- Généré le : jeu. 04 sep. 2025 à 13:19
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -22,6 +22,28 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `shoes` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `shoes`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `marques`
+--
+
+DROP TABLE IF EXISTS `marques`;
+CREATE TABLE IF NOT EXISTS `marques` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `marques`
+--
+
+INSERT INTO `marques` (`id`, `nom`, `logo`) VALUES
+(1, 'Nike', NULL),
+(2, 'Jordan', NULL);
 
 -- --------------------------------------------------------
 
@@ -62,7 +84,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` decimal(6,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `marque` (`marque`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `products`
+--
+
+INSERT INTO `products` (`id`, `nom`, `marque`, `description`, `cover`, `price`) VALUES
+(3, 'Air force One', 1, 'test', '1419381867nike.jpg', 120.00);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
