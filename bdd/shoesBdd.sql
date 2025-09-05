@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 04 sep. 2025 à 13:19
+-- Généré le : ven. 05 sep. 2025 à 14:04
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -26,6 +26,28 @@ USE `shoes`;
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fichier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_product` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_product` (`id_product`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `images`
+--
+
+INSERT INTO `images` (`id`, `fichier`, `id_product`) VALUES
+(1, '531152093nike2.jpg', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `marques`
 --
 
@@ -35,14 +57,14 @@ CREATE TABLE IF NOT EXISTS `marques` (
   `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `marques`
 --
 
 INSERT INTO `marques` (`id`, `nom`, `logo`) VALUES
-(1, 'Nike', NULL),
+(6, 'Nike - test', NULL),
 (2, 'Jordan', NULL);
 
 -- --------------------------------------------------------
@@ -84,14 +106,15 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` decimal(6,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `marque` (`marque`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `products`
 --
 
 INSERT INTO `products` (`id`, `nom`, `marque`, `description`, `cover`, `price`) VALUES
-(3, 'Air force One', 1, 'test', '1419381867nike.jpg', 120.00);
+(11, 'Retro 1', 2, 'test', '1870399749retro1.jpg', 160.00),
+(9, 'Air force One', 6, 'test', '684105180nike.jpg', 120.00);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
