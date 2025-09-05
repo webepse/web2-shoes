@@ -30,6 +30,18 @@
         {
             unlink('../images/'.$product['cover']);
             unlink('../images/mini_'.$product['cover']);
+
+            $imgAssoc = $bdd->prepare("SELECT * FROM images WHERE id_product=?");
+            $imgAssoc->execute([$product['id']]);
+            $donImgA = $imgAssoc->fetchAll(PDO::FETCH_ASSOC);
+            foreach($donImgA as $imga)
+            {
+                unlink('../images/'.$imga['fichier']);
+            }
+
+            $delImgA = $bdd->prepare("DELETE FROM images WHERE id_product=?");
+            $delImgA->execute([$product['id']]);
+
         }
 
         // supprimer dans la bdd les produits

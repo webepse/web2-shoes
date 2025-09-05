@@ -25,8 +25,18 @@
         unlink('../images/'.$donV['cover']);
         unlink('../images/mini_'.$donV['cover']);
 
-      
-
+        // vérifier les images associées
+        $images = $bdd->prepare("SELECT * FROM images WHERE id_product=?");
+        $images->execute([$id]);
+        $donImg = $images->fetchAll(PDO::FETCH_ASSOC);
+        $images->closeCursor();
+        foreach($donImg as $img)
+        {
+            unlink("../images/".$img['fichier']);
+        }
+        
+        $deleteImg = $bdd->prepare("DELETE FROM images WHERE id_product=?");
+        $deleteImg->execute([$id]);
 
         $delete = $bdd->prepare("DELETE FROM products WHERE id=?");
         $delete->execute([$id]);
