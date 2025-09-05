@@ -25,6 +25,9 @@
         unlink('../images/'.$donV['cover']);
         unlink('../images/mini_'.$donV['cover']);
 
+      
+
+
         $delete = $bdd->prepare("DELETE FROM products WHERE id=?");
         $delete->execute([$id]);
         header("LOCATION:products.php?successDel=".$id);
