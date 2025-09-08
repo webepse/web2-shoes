@@ -52,7 +52,8 @@
             exit();
         }
     }
-    
+    // pour garder en mémoire le login dans le formulaire en cas d'erreur
+    $login="";
     if(isset($_POST['login']) && isset($_POST['password']))
     {
         // vérif le formulaire
@@ -128,7 +129,7 @@
                    
                     <div class="form-group my-2">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" class="form-control">
+                        <input type="text" name="login" id="login" class="form-control" value="<?= $login ?>">
                     </div>
                     <div class="form-group my-2">
                         <label for="password">Password</label>

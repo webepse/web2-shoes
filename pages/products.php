@@ -1,8 +1,8 @@
 <div class="container">
-    <h1 class="text-center">Accueil</h1>
+    <h1 class="text-center">Les chaussures</h1>
     <div class="row justify-content-between">
             <?php
-                $req = $bdd->query("SELECT products.cover AS image, products.nom AS pnom, products.id AS pid, marques.nom AS mnom FROM products INNER JOIN marques ON marques.id=products.marque ORDER BY products.id DESC LIMIT 0,3");
+                $req = $bdd->query("SELECT products.cover AS image, products.nom AS pnom, products.id AS pid, marques.nom AS mnom FROM products INNER JOIN marques ON marques.id=products.marque ORDER BY products.id DESC");
                 $donReq= $req->fetchAll(PDO::FETCH_ASSOC);
                 $req->closeCursor();
                 foreach($donReq as $product):
@@ -20,5 +20,4 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <a href="index.php?action=products" class="btn btn-success">Voir plus de chaussures</a>
 </div>
