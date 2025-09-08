@@ -7,7 +7,33 @@
     }
 
     require "../connexion.php";
+    // pagination
+    $reqCount = $bdd->query("SELECT * FROM products");
+    $count = $reqCount->rowCount();
+    // la limit
+    $limit= 5;
+    $nbPage = ceil($count/$limit);
 
+    // sur une pagination de 10 
+    // 41 éléments
+    // il faut 5 pages (41/10= 4.1)
+
+    // connaître la page actuelle
+    if(isset($_GET['page']) && is_numeric($_GET['page']))
+    {
+        $pg = htmlspecialchars($_GET['page']);
+    }else{
+        // dans le cas où il n'y a pas eu de pagination effective
+        $pg = 1;
+    }
+
+    // calcule de l'offset
+    $offset = ($pg-1)*$limit;
+    // (1 - 1) * 10 = 0
+    // (2 - 1) * 10 = 10
+
+
+    // suppression d'un produit
     if(isset($_GET['delete']) && is_numeric($_GET['delete']))
     {
         $id = htmlspecialchars($_GET['delete']);
@@ -99,7 +125,10 @@
             </thead>
             <tbody>
                 <?php
-                    $req = $bdd->query("SELECT products.id AS pid, products.nom AS pnom, marques.nom AS mnom, products.price AS prix FROM products INNER JOIN marques ON products.marque = marques.id ORDER BY products.id DESC");
+                    $req = $bdd->prepare("SELECT products.id AS pid, products.nom AS pnom, marques.nom AS mnom, products.price AS prix FROM products INNER JOIN marques ON products.marque = marques.id ORDER BY products.id DESC LIMIT :offset,:limit");
+                    $req->bindParam(':offset',$offset, PDO::PARAM_INT);
+                    $req->bindParam(':limit',$limit, PDO::PARAM_INT);
+                    $req->execute();
                     while($don = $req->fetch(PDO::FETCH_ASSOC))
                     {
                         echo "<tr>";
@@ -117,6 +146,31 @@
                 ?>
             </tbody>
         </table>
+
+        
+
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <?php
+                if($pg>1)
+                {
+                    echo '<li class="page-item"><a class="page-link" href="products.php?page='.($pg-1).'">Previous</a></li>';
+                }
+                for($cpt=1;$cpt<=$nbPage;$cpt++)
+                {
+                    echo '<li class="page-item"><a class="page-link" href="products.php?page='.$cpt.'">'.$cpt.'</a></li>';
+                }
+                if($pg!=$nbPage)
+                {
+                     echo '<li class="page-item"><a class="page-link" href="products.php?page='.($pg+1).'">Next</a></li>';
+                }
+            ?>
+        </ul>
+        </nav>
+
+
+
+
 
     </div>
     <?php
