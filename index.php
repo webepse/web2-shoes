@@ -1,4 +1,9 @@
 <?php
+    /**
+     * @var PDO $bdd
+     * connexion.php
+     */
+
     // bdd
     require "connexion.php";
     $tabMenu = [
@@ -18,6 +23,9 @@
                 {
                     $id = htmlspecialchars($_GET['id']);
                     // vérifier que l'id correspond bien à un produit
+                    /**
+                     * PDO $bdd
+                     */
                     $prod = $bdd->prepare("SELECT products.cover AS image, products.nom AS pnom, products.id AS pid, marques.nom AS mnom, products.description AS description, products.price AS prix FROM products INNER JOIN marques ON marques.id=products.marque WHERE products.id=?");
                     $prod->execute([$id]);
                     $donProd = $prod->fetch(PDO::FETCH_ASSOC);
@@ -37,7 +45,35 @@
                     exit();
                 }
 
-            }else{
+            }elseif($_GET['action']=="products")
+            {
+                // pagination
+                $reqCount = $bdd->query("SELECT * FROM products");
+                $count = $reqCount->rowCount();
+                // la limit
+                $limit= 5;
+                $nbPage = ceil($count/$limit);
+
+                // connaître la page actuelle
+                if(isset($_GET['page']) && is_numeric($_GET['page']))
+                {
+                    $pg = htmlspecialchars($_GET['page']);
+                    // gestion d'un numéro de page trop élevé dans l'URL
+                    if($pg>$nbPage)
+                    {
+                        $pg = $nbPage;
+                    }
+                }else{
+                    // dans le cas où il n'y a pas eu de pagination effective
+                    $pg = 1;
+                }
+
+                // calcule de l'offset
+                $offset = ($pg-1)*$limit;
+
+                $menu = $tabMenu['products'];
+            }
+            else{
                 $menu = $tabMenu[$_GET['action']];
             }
         }else{

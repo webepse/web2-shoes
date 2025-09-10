@@ -7,7 +7,7 @@
                 $req->closeCursor();
                 foreach($donReq as $product):
             ?>        
-            <div class="card col-md-3">
+            <div class="card col-md-3 p-2">
                 <div class="img">
                     <img src="images/<?= $product['image'] ?>" alt="image de <?= $product['pnom'] ?>" class="img-fluid">
                 </div>
@@ -20,5 +20,7 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <a href="index.php?action=products" class="btn btn-success">Voir plus de chaussures</a>
+    <div class="d-flex justify-content-center mt-5">
+        <a href="index.php?action=products" class="btn btn-primary">Voir plus de chaussures</a>
+    </div>
 </div>
