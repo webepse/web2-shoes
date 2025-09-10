@@ -3,3 +3,14 @@
     height: 200px;
     object-fit: cover;
 }
+
+.cover img{
+    height: 400px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.carousel img{
+    height: 400px;
+    object-fit: cover;
+}
