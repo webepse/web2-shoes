@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 05 sep. 2025 à 14:04
+-- Généré le : mer. 10 sep. 2025 à 10:21
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -32,18 +32,23 @@ USE `shoes`;
 DROP TABLE IF EXISTS `images`;
 CREATE TABLE IF NOT EXISTS `images` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `fichier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fichier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_product` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_product` (`id_product`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `images`
 --
 
 INSERT INTO `images` (`id`, `fichier`, `id_product`) VALUES
-(1, '531152093nike2.jpg', 5);
+(1, '531152093nike2.jpg', 5),
+(14, '158971588010355.jpeg', 22),
+(15, '950341742Couv-272116.jpg', 22),
+(16, '467948856Daredevil-02.jpg', 22),
+(17, '1021772040Daredevil-12.jpg', 22),
+(18, '8386533img-comics-7771-daredevil-father-nouvelle-edition.jpg', 22);
 
 -- --------------------------------------------------------
 
@@ -54,10 +59,10 @@ INSERT INTO `images` (`id`, `fichier`, `id_product`) VALUES
 DROP TABLE IF EXISTS `marques`;
 CREATE TABLE IF NOT EXISTS `marques` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `marques`
@@ -65,7 +70,8 @@ CREATE TABLE IF NOT EXISTS `marques` (
 
 INSERT INTO `marques` (`id`, `nom`, `logo`) VALUES
 (6, 'Nike - test', NULL),
-(2, 'Jordan', NULL);
+(2, 'Jordan', NULL),
+(9, 'Puma', NULL);
 
 -- --------------------------------------------------------
 
@@ -76,10 +82,10 @@ INSERT INTO `marques` (`id`, `nom`, `logo`) VALUES
 DROP TABLE IF EXISTS `members`;
 CREATE TABLE IF NOT EXISTS `members` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `login` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `connexion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `login` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `connexion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -99,14 +105,14 @@ INSERT INTO `members` (`id`, `login`, `password`, `connexion`, `email`) VALUES
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `marque` int NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `cover` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `price` decimal(6,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `marque` (`marque`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `products`
@@ -114,7 +120,12 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 INSERT INTO `products` (`id`, `nom`, `marque`, `description`, `cover`, `price`) VALUES
 (11, 'Retro 1', 2, 'test', '1870399749retro1.jpg', 160.00),
-(9, 'Air force One', 6, 'test', '684105180nike.jpg', 120.00);
+(9, 'Air force One', 6, 'test', '684105180nike.jpg', 120.00),
+(18, 'test 1', 9, 'test', '2117333545Daredevil-12.jpg', 100.00),
+(19, 'test 2', 9, 'test', '247553664Daredevil-02.jpg', 100.00),
+(20, 'test 3', 9, 'test', '453911552Couv-272116.jpg', 150.00),
+(21, 'test 4', 6, 'test', '195241960410355.jpeg', 100.00),
+(22, 'test 5', 2, 'test', '1632941146Daredevil-12.jpg', 125.00);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
