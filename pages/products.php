@@ -8,15 +8,15 @@
             <?php
             if($pg>1)
             {
-                echo '<li class="page-item"><a class="page-link" href="index.php?action=products&page='.($pg-1).'">Previous</a></li>';
+                echo '<li class="page-item"><a class="page-link" href="products-page-'.($pg-1).'">Previous</a></li>';
             }
             for($cpt=1;$cpt<=$nbPage;$cpt++)
             {
-                echo '<li class="page-item"><a class="page-link" href="index.php?action=products&page='.$cpt.'">'.$cpt.'</a></li>';
+                echo '<li class="page-item"><a class="page-link" href="products-page-'.$cpt.'">'.$cpt.'</a></li>';
             }
             if($pg!=$nbPage)
             {
-                echo '<li class="page-item"><a class="page-link" href="index.php?action=products&page='.($pg+1).'">Next</a></li>';
+                echo '<li class="page-item"><a class="page-link" href="products-page-'.($pg+1).'">Next</a></li>';
             }
             ?>
         </ul>
@@ -41,7 +41,7 @@
                     <h4><?= $product['mnom'] ?></h4>
                     <h3><?= $product['pnom'] ?></h3>
                 </div>
-                <a href="index.php?action=product&id=<?= $product['pid'] ?>" class="btn btn-success">En savoir plus</a>
+                <a href="product-<?= $product['pid'] ?>" class="btn btn-success">En savoir plus</a>
             </div>
             <?php endforeach; ?>
         </div>

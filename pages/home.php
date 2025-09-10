@@ -15,12 +15,12 @@
                     <h4><?= $product['mnom'] ?></h4>
                     <h3><?= $product['pnom'] ?></h3>
                 </div>
-                <a href="index.php?action=product&id=<?= $product['pid'] ?>" class="btn btn-success">En savoir plus</a>
+                <a href="product-<?= $product['pid'] ?>" class="btn btn-success">En savoir plus</a>
             </div>
             <?php endforeach; ?>
         </div>
     </div>
     <div class="d-flex justify-content-center mt-5">
-        <a href="index.php?action=products" class="btn btn-primary">Voir plus de chaussures</a>
+        <a href="products" class="btn btn-primary">Voir plus de chaussures</a>
     </div>
 </div>
