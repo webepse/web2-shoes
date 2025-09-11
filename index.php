@@ -78,9 +78,9 @@
             {
                 if(isset($_GET['search']))
                 {
-                    $search = strip_tags(htmlspecialchars($_GET['search']));
+                    $search = htmlspecialchars(strip_tags($_GET['search']));
                 }
-                $menu = $tabMenu[$_GET['action']];
+                $menu = $tabMenu["search"];
             }
             else{
                 $menu = $tabMenu[$_GET['action']];
