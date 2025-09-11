@@ -16,6 +16,11 @@
                     <a class="nav-link" href="index.php?action=search">Rechercher</a>
                 </li>
             </ul>
+            <form class="d-flex ms-auto" role="search" action="index.php" method="GET">
+                <input type="hidden" name="action" value="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
