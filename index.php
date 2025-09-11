@@ -9,7 +9,8 @@
     $tabMenu = [
         "home" => "home.php",
         "products" => "products.php",
-        "product" => "show.php"
+        "product" => "show.php",
+        "search" => "search.php"
     ];
 
     if(isset($_GET['action']) && !empty($_GET['action']))
@@ -72,6 +73,14 @@
                 $offset = ($pg-1)*$limit;
 
                 $menu = $tabMenu['products'];
+            }
+            elseif($_GET['action']=="search")
+            {
+                if(isset($_GET['search']))
+                {
+                    $search = strip_tags(htmlspecialchars($_GET['search']));
+                }
+                $menu = $tabMenu[$_GET['action']];
             }
             else{
                 $menu = $tabMenu[$_GET['action']];

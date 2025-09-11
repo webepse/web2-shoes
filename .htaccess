@@ -8,5 +8,5 @@
     RewriteRule ^product-([0-9]+)$ index.php?action=product&id=$1 [L]
     RewriteRule ^products-page-([0-9]+)$ index.php?action=products&page=$1 [L]
     RewriteRule ^products/?$ index.php?action=products&page=1 [L]
-    RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?action=$1 [L]
+    #RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?action=$1 [L]
 </ifModule>

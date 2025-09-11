@@ -7,10 +7,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="home">Home</a>
+                    <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="products">Les chaussures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=search">Rechercher</a>
                 </li>
             </ul>
         </div>
