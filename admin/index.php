@@ -44,11 +44,11 @@
                 }
             }else{
                 // pas ok pour l'id
-                header("LOCATION:403.php?id");
+                header("LOCATION:../403.php?id");
                 exit();
             }  
         }else{
-            header("LOCATION:403.php?numeric");
+            header("LOCATION:../403.php?numeric");
             exit();
         }
     }

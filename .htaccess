@@ -2,8 +2,8 @@
     Options +FollowSymlinks
     RewriteEngine On
     #pour les alias
-    #RewriteBase /PHPJordan/2026/web2-shoes/
-    RewriteBase /PHPJordan/shoes/
+    RewriteBase /PHPJordan/2026/web2-shoes/
+    #RewriteBase /PHPJordan/shoes/
 
     RewriteRule ^product-([0-9]+)$ index.php?action=product&id=$1 [L]
     RewriteRule ^products-page-([0-9]+)$ index.php?action=products&page=$1 [L]
